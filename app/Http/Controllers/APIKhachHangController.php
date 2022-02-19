@@ -47,4 +47,16 @@ class APIKhachHangController extends Controller
             'message' => 'Thêm khách hàng thành công'
         ]);
     }
+
+    public function login(Request $request)
+    {
+        $khacHang = khachhang::where('email',$request->email)
+        ->where('password', $request->password)->get();
+        if($khachhang == null) {
+            return reponse()->json(401);
+        }else {
+            return reponse()->json(402);
+        }
+        return reponse()->json(200);
+    }
 }

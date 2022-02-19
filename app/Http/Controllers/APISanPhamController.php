@@ -9,11 +9,31 @@ class APISanPhamController extends Controller
     function layDanhSach()
     {
           $danhSach = SanPham::all();
-          return  json_encode([
-              'success' => true,
-              'data' => $danhSach,
-          ]);
+          return  json_encode( $danhSach,
+          );
     }
+
+    function layDanhSachBun() {
+        $danhSach = SanPham::where('loaispid',1)->get();
+        return json_encode ($danhSach,);
+    }
+
+    function layDanhSachCom() {
+        $danhSach = SanPham::where('loaispid',2)->get();
+        return json_encode ($danhSach,);
+    }
+
+    function layDanhSachFastFood() {
+        $danhSach = SanPham::where('loaispid',3)->get();
+        return json_encode ($danhSach,);
+    }
+
+    function layDanhSachNuoc() {
+        $danhSach = SanPham::where('loaispid',4)->get();
+        return json_encode ($danhSach,);
+    }
+
+
     function chiTiet($id)
     {
         $sanPham = SanPham::find($id);
@@ -62,7 +82,7 @@ class APISanPhamController extends Controller
         $sanPham->created_at = $request->created_at;
         $sanPham->updated_at = $request->updated_at;
         $sanPham->delete();
-        
+
         return json_encode([
             'success' => true,
             'message' => 'Xóa sản phẩm thành công'
@@ -82,7 +102,7 @@ class APISanPhamController extends Controller
         $sanPham->created_at = $request->created_at;
         $sanPham->updated_at = $request->updated_at;
         $sanPham->update();
-        
+
         return json_encode([
             'success' => true,
             'message' => 'Sửa sản phẩm thành công'

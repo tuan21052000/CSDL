@@ -9,10 +9,8 @@ class APILoaiSanPhamController extends Controller
     function layLoaiSanPham()
     {
         $danhSach = LoaiSanPham::all();
-        return  json_encode([
-            'success' => true,
-            'data' => $danhSach,
-        ]);
+        return  json_encode( $danhSach,
+        );
     }
     function chiTiet($id)
     {
